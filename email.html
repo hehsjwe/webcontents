@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설문지</title>
+</head>
+<body>
+
+    <h1>설문지</h1>
+    <p>소프트웨어 기술에 대한 의견을 듣습니다. 많은 참여 부탁드립니다.</p>
+    <hr>
+
+    <form action="">
+        <div>
+            <label>학년 : </label>
+            <label for="grade_1"><input type="radio" id="grade_1" name="grade" checked> 1학년</label>
+            <label for="grade_2"><input type="radio" id="grade_2" name="grade"> 2학년</label>
+            <label for="grade_3"><input type="radio" id="grade_3" name="grade"> 3학년</label>
+            <label for="grade_4"><input type="radio" id="grade_4" name="grade"> 4학년</label>
+        </div>
+
+        <div>
+            <label>성별 : </label>
+            <label for="male"><input type="radio" id="male" name="sex" checked> 남성</label>
+            <label for="female"><input type="radio" id="female" name="sex"> 여성</label>
+        </div>
+
+        <label for="">관심분야 : <input type="text" name="interest" id="interest"></label>
+
+        <div>
+            <label for="">진로 : </label>
+            <label for="develop"><input type="checkbox" name="career" id="develop"> 개발</label>
+            <label for="plan"><input type="checkbox" name="career" id="plan"> 기획</label>
+            <label for="sales"><input type="checkbox" name="career" id="sales"> 영업</label>
+            <label for="startup"><input type="checkbox" name="career" id="startup"> 창업</label>
+        </div>
+        <label>남기고 실은말</label>
+        <textarea style="display: block;" name="last_say" id="last_say" placeholder="글을 남겨 주세요"></textarea>
+    </form>
+
+</body>
+</html>
