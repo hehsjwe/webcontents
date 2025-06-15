@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J&B Consulting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .header.scrolled .logo {
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .header.scrolled .nav-menu a {
+            color: #333;
+        }
+
+        .nav-menu a:hover {
+            color: #e74c3c;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .header.scrolled .btn-outline {
+            border-color: #333;
+            color: #333;
+        }
+
+        .btn-primary {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23001122" width="1200" height="800"/><g fill="%23334455"><rect x="0" y="400" width="1200" height="200"/><rect x="100" y="300" width="150" height="300"/><rect x="300" y="250" width="200" height="350"/><rect x="550" y="200" width="180" height="400"/><rect x="780" y="180" width="160" height="420"/><rect x="990" y="220" width="140" height="380"/></g><g fill="%23556677"><rect x="50" y="350" width="80" height="250"/><rect x="350" y="280" width="100" height="320"/><rect x="600" y="230" width="80" height="370"/><rect x="830" y="210" width="80" height="390"/><rect x="1040" y="250" width="80" height="350"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .scroll-arrow {
+            font-size: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+            margin: 0 auto;
+        }
+
+        /* Notice Section */
+        .notice-section {
+            background: #f8f9fa;
+        }
+
+        .notice-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .notice-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notice-item:hover {
+            background: rgba(231, 76, 60, 0.05);
+            padding-left: 10px;
+        }
+
+        .notice-number {
+            font-weight: bold;
+            color: #666;
+            margin-right: 20px;
+            min-width: 30px;
+        }
+
+        .notice-title {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .notice-date {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .about-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+
+        .about-card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .about-btn {
+            background: #999;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .about-btn:hover {
+            background: #e74c3c;
+        }
+
+        /* Business Section */
+        .business-section {
+            background: #f8f9fa;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .business-card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .business-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .business-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .business-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .business-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .about-grid, .business-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .notice-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+
+        .nono {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            position: relative;
+        }
+
+        .nono li {
+            position: relative;
+        }
+
+        .nono > li > a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 15px 10px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .header.scrolled .nono > li > a {
+            color: #333;
+        }
+
+        .nono > li:hover > a {
+            color: #e74c3c;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            flex-direction: column;
+            padding: 10px 0;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f2f2f2;
+            color: #e74c3c;
+        }
+
+        .nono li:hover .dropdown-content {
+            display: flex;
+            animation: fadeDown 0.3s ease;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            
+
+
+        <div class="nav-container">
+            <a href="#" class="logo">EASTCORE consulting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <nav>
+                <ul class="nono">
+                    <li>
+                        <a href="#about">회사소개</a>
+                        <div class="dropdown-content">
+                            <a href="#">인사말</a>
+                            <a href="#">회사개요</a>
+                            <a href="#">기업가치관</a>
+                            <a href="#">주요연혁</a>
+                            <a href="#">오시는 길</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#business">사업소개</a>
+                        <div class="dropdown-content">
+                            <a href="#">아웃소싱</a>
+                            <a href="#">인재파견</a>
+                            <a href="#">채용대행</a>
+                            <a href="#">헤드헌팅</a>
+                            <a href="#">위탁사업</a>
+                            <a href="#">교육사업</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#notice">공지센터</a>
+                        <div class="dropdown-content">
+                            <a href="#">공지사항</a>
+                            <a href="#">FAQ</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#contact">채용정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <div class="dropdown-content">
+                            <a href="#">채용안내</a>
+                            <a href="#">이력서 다운로드</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="nav-buttons">
+                <button class="btn btn-outline">이스트코어 소개</button>
+                <button class="btn btn-primary">사업문의</button>
+            </div>
+        </div>
+
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Beautiful corporation EASTCORE consulting</p>
+            <h1 class="hero-title">아름다운 기업! 이스트코어</h1>
+            <p class="hero-description">이스트코어의 아름다운 헤어가 당신의 꿈과 희망을 응원합니다.</p>
+        </div>
+        <div class="scroll-indicator">
+            <p>SCROLL DOWN</p>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- Notice Section -->
+    <section class="section notice-section" id="notice">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">NOTICE</p>
+                <h2 class="section-title">공지사항</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="notice-list">
+                <div class="notice-item">
+                    <span class="notice-number">5</span>
+                    <span class="notice-title">이스트</span>
+                    <span class="notice-date">2025-05-07</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-number">4</span>
+                    <span class="notice-title">코어</span>
+                    <span class="notice-date">2025-05-02</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-number">3</span>
+                    <span class="notice-title">이스</span>
+                    <span class="notice-date">2025-04-30</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-number">2</span>
+                    <span class="notice-title">트코어</span>
+                    <span class="notice-date">2025-04-02</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-number">1</span>
+                    <span class="notice-title">이스트코어</span>
+                    <span class="notice-date">2025-04-02</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">ABOUT J&B CONSULTING</p>
+                <h2 class="section-title">회사소개</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">📋</div>
+                    <h3 class="about-card-title">회사개요</h3>
+                    <button class="about-btn">보러가기</button>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">📊</div>
+                    <h3 class="about-card-title">주요연혁</h3>
+                    <button class="about-btn">보러가기</button>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">🌱</div>
+                    <h3 class="about-card-title">기업가치관</h3>
+                    <button class="about-btn">보러가기</button>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">📍</div>
+                    <h3 class="about-card-title">지사안내</h3>
+                    <button class="about-btn">보러가기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Section -->
+    <section class="section business-section" id="business">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">BUSINESS AREA</p>
+                <h2 class="section-title">사업영역</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-icon">👥</div>
+                    <h3 class="business-card-title">아웃소싱</h3>
+                    <button class="business-btn">자세히보기</button>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon">💼</div>
+                    <h3 class="business-card-title">인재파견</h3>
+                    <button class="business-btn">자세히보기</button>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon">🏢</div>
+                    <h3 class="business-card-title">채용대행</h3>
+                    <button class="business-btn">자세히보기</button>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon">🔍</div>
+                    <h3 class="business-card-title">헤드헌팅</h3>
+                    <button class="business-btn">자세히보기</button>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon">🤝</div>
+                    <h3 class="business-card-title">위탁사업</h3>
+                    <button class="business-btn">자세히보기</button>
+                </div>
+                <div class="business-card">
+                    <div class="business-icon">🎓</div>
+                    <h3 class="business-card-title">교육사업</h3>
+                    <button class="business-btn">자세히보기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">EASTCORE consulting</div>
+                <div class="footer-text">
+                    아름다운 기업, 이스트코어<br>
+                    Beautiful corporation eastcore consulting<br>
+                    © 2025 eastcore Consulting. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for scroll indicator
+        document.querySelector('.scroll-indicator').addEventListener('click', function() {
+            document.querySelector('#notice').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Notice item click effect
+        document.querySelectorAll('.notice-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.backgroundColor = 'rgba(231, 76, 60, 0.1)';
+                setTimeout(() => {
+                    this.style.backgroundColor = '';
+                }, 200);
+            });
+        });
+
+        // Card hover animations
+        function addHoverEffect(selector) {
+            document.querySelectorAll(selector).forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        addHoverEffect('.about-card');
+        addHoverEffect('.business-card');
+
+        // Button click effects
+        document.querySelectorAll('.btn, .about-btn, .business-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.about-card, .business-card, .notice-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
