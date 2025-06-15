@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>J&B 컨설팅</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; line-height: 1.6; }
+
+    /* 네비게이션 */
+    header {
+      background-color: #eee;
+      padding: 20px 0;
+      position: relative;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+    .logo {
+      font-weight: bold;
+      color: #e91e63;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      position: relative;
+    }
+    nav li {
+      position: relative;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    nav li:hover > a {
+      color: #e91e63;
+    }
+
+    /* 드롭다운 메뉴 */
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 10px 20px;
+      z-index: 1000;
+    }
+    .submenu a {
+      display: block;
+      padding: 5px 0;
+      white-space: nowrap;
+    }
+    nav li:hover .submenu {
+      display: block;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .main-visual {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9f9f9;
+      padding: 40px 20px;
+    }
+    .main-visual .text {
+      max-width: 50%;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      padding: 20px;
+      width: 200px;
+    }
+    footer {
+      background: #2f2f2f;
+      color: #ccc;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 12px;
+    }
+    footer a { color: #aaa; text-decoration: none; margin: 0 5px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">J&B consulting</div>
+      <nav>
+        <ul>
+          <li>
+            <a href="#">회사소개</a>
+            <div class="submenu">
+              <a href="#">인사말</a>
+ 
+              <a href="#">기업가치관</a>
+   
+              <a href="#">오시는 길</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">사업소개</a>
+            <div class="submenu">
+              <a href="#">아웃소싱</a>
+            
+            </div>
+          </li>
+          <li>
+            <a href="#">홍보센터</a>
+            <div class="submenu">
+              <a href="#">공지사항</a>
+
+              <a href="#">CI</a>
+            </div>
+          </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Visual -->
+  <section class="main-visual">
+    <div class="text">
+      <h2>여성이 일하기 행복한 女건</h2>
+      <p>여성 인재 양성과 경력단절 여성들의 사회 재진입을 위해<br>
+      크고 넓은 꿈을 가지고 새롭게 거듭나는 <strong style="color:#00c300;">제이앤비컨설팅</strong>이 되겠습니다.</p>
+    </div>
+    <div>
+      <img src="office_image.jpg" alt="오피스 이미지" width="400">
+    </div>
+  </section>
+
+  <!-- 사업영역 -->
+  <section>
+    <h2>사업영역</h2>
+    <div class="cards">
+      <div class="card">아웃소싱<br><button>자세히보기</button></div>
+      <div class="card">인재파견<br><button>자세히보기</button></div>
+      <div class="card">채용대행<br><button>자세히보기</button></div>
+      <div class="card">헤드헌팅<br><button>자세히보기</button></div>
+      <div class="card">위탁사업<br><button>자세히보기</button></div>
+      <div class="card">교육사업<br><button>자세히보기</button></div>
+    </div>
+  </section>
+
+  <!-- 채용정보 -->
+  <section>
+    <h2>채용정보</h2>
+    <div class="cards">
+      <div class="card">국민건강보험공단<br><small>상시</small></div>
+      <div class="card">우리카드<br><small>상시</small></div>
+      <div class="card">리레코코리아<br><small>상시</small></div>
+      <div class="card">NH농협<br><small>상시</small></div>
+      <div class="card">IBK기업은행<br><small>상시</small></div>
+      <div class="card">롯데홈쇼핑<br><small>상시</small></div>
+      <div class="card">신한카드<br><small>상시</small></div>
+      <div class="card">분당제생병원<br><small>상시</small></div>
+    </div>
+  </section>
+
+  <!-- 공지사항 -->
+  <section>
+    <h2>공지사항</h2>
+    <ul>
+      <li>비고 - <small>2025-06-15</small></li>
+      <li>비고 - <small>2025-06-15</small></li>
+      <li>비고 - <small>2025-06-15</small></li>
+      <li>비고 - <small>2025-06-15</small></li>
+      <li>비고 - <small>2025-06-15</small></li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>(주)이스코어 대표이사: 홍길동 | 파주시 동패동<br>
+    사업자등록번호: 119-55-226 | 직업소개신고: 서울남부 제 2011-19호 | 대표전화: 02-2167-3300</p>
+    <p>&copy; JNB CONSULTING CO., LTD. ALL RIGHTS RESERVED.</p>
+    <div>
+      <a href="#">제보하기</a> | <a href="#">칭찬하기</a> | <a href="#">Facebook</a> | <a href="#">Blog</a>
+    </div>
+  </footer>
+
+</body>
+</html>
