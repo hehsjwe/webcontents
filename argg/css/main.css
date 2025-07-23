@@ -1361,12 +1361,7 @@ Input, textarea : 16px/1.5 'Roboto-Ragular', Arial, sans-serif;
   position: relative;
 }
 
-@media (max-width: 768px) {
-  .progress-inner {
-    overflow: visible !important;
-    white-space: nowrap;
-  }
-}
+
 
 
 
